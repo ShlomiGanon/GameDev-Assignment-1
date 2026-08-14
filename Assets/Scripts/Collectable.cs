@@ -4,7 +4,7 @@ using UnityEngine;
 public enum CollectableType
 {
     Coin,
-    Dimond,
+    Diamond,
     Star
 }
 
@@ -24,5 +24,4 @@ public class Collectable : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }
