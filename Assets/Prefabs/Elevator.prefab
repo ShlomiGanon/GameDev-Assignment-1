@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9139573825801862726}
-  - component: {fileID: 6710185827076703287}
   m_Layer: 0
   m_Name: Elevator
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,22 +34,6 @@ Transform:
   - {fileID: 4737264535370643648}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6710185827076703287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2350058060965341185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09486e9828b38e04e8a0fad546056515, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MovingPlatform
-  platform: {fileID: 5176408794409084846}
-  topPoint: {fileID: 6690243438006126181}
-  BottomPoint: {fileID: 4737264535370643648}
-  speed: 2
 --- !u!1 &2556962201937621692
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 2556962201937621692}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.66, y: -4.77, z: 0}
+  m_LocalPosition: {x: -8.55, y: -4.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -94,9 +77,10 @@ GameObject:
   - component: {fileID: 4585901259254752741}
   - component: {fileID: 1847734318855939935}
   - component: {fileID: 6785570727738649805}
+  - component: {fileID: 405883503036148440}
   m_Layer: 0
   m_Name: MovingPlatform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +94,7 @@ Transform:
   m_GameObject: {fileID: 4057085053529855072}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.15, y: -1.46, z: 0}
+  m_LocalPosition: {x: -8.55, y: -1.46, z: 0}
   m_LocalScale: {x: 2.088, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -248,6 +232,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &405883503036148440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4057085053529855072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09486e9828b38e04e8a0fad546056515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovingPlatform
+  topPoint: {fileID: 6690243438006126181}
+  bottomPoint: {fileID: 4737264535370643648}
+  speed: 2
 --- !u!1 &7715106786592915732
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +272,7 @@ Transform:
   m_GameObject: {fileID: 7715106786592915732}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.57, y: 4.41, z: 0}
+  m_LocalPosition: {x: -8.55, y: 3.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

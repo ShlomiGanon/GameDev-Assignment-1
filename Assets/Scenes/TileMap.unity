@@ -827,7 +827,7 @@ Transform:
   - {fileID: 1276860771}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4478464065009073489
+--- !u!1001 &1913431411
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -839,29 +839,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Elevator
       objectReference: {fileID: 0}
-    - target: {fileID: 2350058060965341185, guid: b07a54a3f80c96540a4bcfb0bf70c203, type: 3}
-      propertyPath: m_TagString
-      value: Ground
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737264535370643648, guid: b07a54a3f80c96540a4bcfb0bf70c203, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 6690243438006126181, guid: b07a54a3f80c96540a4bcfb0bf70c203, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 6690243438006126181, guid: b07a54a3f80c96540a4bcfb0bf70c203, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.57
-      objectReference: {fileID: 0}
     - target: {fileID: 9139573825801862726, guid: b07a54a3f80c96540a4bcfb0bf70c203, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.72
+      value: -1.5145264
       objectReference: {fileID: 0}
     - target: {fileID: 9139573825801862726, guid: b07a54a3f80c96540a4bcfb0bf70c203, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.09
+      value: 0.8120675
       objectReference: {fileID: 0}
     - target: {fileID: 9139573825801862726, guid: b07a54a3f80c96540a4bcfb0bf70c203, type: 3}
       propertyPath: m_LocalPosition.z
@@ -907,5 +891,5 @@ SceneRoots:
   - {fileID: 381903029}
   - {fileID: 1551895824}
   - {fileID: 1456916654}
-  - {fileID: 4478464065009073489}
   - {fileID: 1043355980}
+  - {fileID: 1913431411}
