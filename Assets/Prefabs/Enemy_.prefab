@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8814829942886145925}
   - component: {fileID: 3405636195650589934}
   - component: {fileID: 2734845131668944036}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 1732261509589000573}
   - component: {fileID: 487665551398883463}
   - component: {fileID: 8162178722758024337}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy_Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 2318476006201882755}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9806802, y: 0.53402996, z: 0}
+  m_LocalPosition: {x: -5.83, y: 2.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -297,9 +297,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2494262339994042735}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy_
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

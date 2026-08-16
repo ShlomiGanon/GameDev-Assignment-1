@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2237981255315047161}
   - component: {fileID: 3052211846487876536}
   - component: {fileID: 1916450519934607707}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbafed1f72022ea4eaa05eecb119031b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectable
-  scoreManager: {fileID: 0}
+  gameManager: {fileID: 0}
   collectableType: 1
 --- !u!58 &2237981255315047161
 CircleCollider2D:

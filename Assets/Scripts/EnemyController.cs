@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -20,6 +21,11 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!player.GetComponent<PlayerController>().IsAlive())
+        {
+            pm.HandleHorizontalMove(0f);
+            return;
+        }
         Vector2 MoveDerictions = new Vector2(0f, 0f);
         if(IsEngage)
         {

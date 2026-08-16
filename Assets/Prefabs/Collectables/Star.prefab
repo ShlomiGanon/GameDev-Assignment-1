@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1681546971307212244}
   - component: {fileID: 2450878038788349077}
   - component: {fileID: 128398541702212551}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbafed1f72022ea4eaa05eecb119031b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectable
-  scoreManager: {fileID: 0}
+  gameManager: {fileID: 0}
   collectableType: 1
 --- !u!58 &1681546971307212244
 CircleCollider2D:

@@ -24,4 +24,11 @@ public class Collectable : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void FixedUpdate()
+    {
+        Vector3 currentRotation = transform.eulerAngles;
+        currentRotation.y += 1;
+        transform.eulerAngles = currentRotation;
+    }
 }
