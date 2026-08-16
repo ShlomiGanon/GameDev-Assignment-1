@@ -10,16 +10,16 @@ public enum CollectableType
 
 public class Collectable : MonoBehaviour
 {
-    [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private CollectableType collectableType;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            if (scoreManager)
+            if (gameManager)
             {
-                scoreManager.CountCollectables(this.collectableType);
+                gameManager.CountCollectables(this.collectableType);
             }
             Destroy(gameObject);
         }

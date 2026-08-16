@@ -6,10 +6,13 @@ using UnityEngine.InputSystem.Controls;
 public class PlayerController : MonoBehaviour
 {
     private PlayerMovement pm;
+    private GameManager gameManager;
     void Start()
     {
         pm = GetComponent<PlayerMovement>();
         if (!pm) Debug.LogError("can't find PlayerMovement script!");
+        gameManager = FindFirstObjectByType<GameManager>();
+        if (!gameManager) Debug.LogError("can't find GameManager script!");
     }
 
     void OnMove(InputValue value)
@@ -23,6 +26,26 @@ public class PlayerController : MonoBehaviour
         if (value.isPressed)
         {
             pm.HandleJump();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            TriggerGameOver();
+        }
+    }
+
+    void TriggerGameOver()
+    {
+        if (gameManager != null)
+        {
+            gameManager.StartCoroutine(gameManager.GameEnd());
+        }
+        else
+        {
+            Debug.LogError("cant end the game , can't find GameManager script");
         }
     }
 
