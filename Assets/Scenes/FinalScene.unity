@@ -6800,11 +6800,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   cinemachineCamera: {fileID: 83219647}
-  player: {fileID: 0}
+  player: {fileID: 786114080}
   deathForce: {x: 0, y: 5}
   deathTorque: 20
   sceneReloadDelay: 4
-  winPlayerColor: {r: 0, g: 0, b: 0, a: 0}
+  winPlayerColor: {r: 0.1541156, g: 0.87169814, b: 0.03782831, a: 1}
 --- !u!4 &607970472
 Transform:
   m_ObjectHideFlags: 0
