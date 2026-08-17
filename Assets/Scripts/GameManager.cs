@@ -28,10 +28,24 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator GameEnd(bool finishedSuccessfully = false)
     {
-        if (cinemachineCamera != null)
+
+        //--- game over prints
+        string collected_msg = "End Game Status: " + ((finishedSuccessfully) ? "Success" : "Failed") + "\n";
+
+        foreach (CollectableType type in System.Enum.GetValues(typeof(CollectableType)))
         {
-            cinemachineCamera.Follow = null;
+            if (Collected.ContainsKey(type)) 
+            {
+                int count = (int)Collected[type];
+                collected_msg += "collected - " + type + ": " + count + "\n";
+            }
+            else
+            {
+                collected_msg += "not collected - " + type + "\n";
+            }
         }
+        Debug.Log(collected_msg);
+        //---
 
 
         if (Player != null)

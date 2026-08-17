@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Trap
   - FinishLine
+  - Collectable
   layers:
   - Default
   - TransparentFX

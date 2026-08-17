@@ -36,16 +36,33 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!isAlive) return;
+
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Trap"))
         {
             isAlive = false;
             TriggerGameOver();
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("FinishLine"))
+        if (!isAlive) return;
+
+        if (collision.gameObject.CompareTag("Collectable"))
+        {
+            Collectable collectable = collision.gameObject.GetComponent<Collectable>();
+
+            if (collectable != null && gameManager != null)
+            {
+                CollectableType type = collectable.GetCollectableType();
+                gameManager.CountCollectables(type);
+            }
+
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("FinishLine"))
         {
             TriggerGameOver(true);
         }

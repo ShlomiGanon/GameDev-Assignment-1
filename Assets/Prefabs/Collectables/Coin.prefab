@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 497732649196415767}
   m_Layer: 7
   m_Name: Coin
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbafed1f72022ea4eaa05eecb119031b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectable
-  gameManager: {fileID: 0}
   collectableType: 0
 --- !u!58 &7455758768294171217
 CircleCollider2D:
