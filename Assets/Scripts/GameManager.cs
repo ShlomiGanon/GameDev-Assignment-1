@@ -37,15 +37,20 @@ public class GameManager : MonoBehaviour
             if (Collected.ContainsKey(type)) 
             {
                 int count = (int)Collected[type];
-                collected_msg += "collected - " + type + ": " + count + "\n";
+                collected_msg += "collected " + count + " of " + type + "\n";
             }
             else
             {
-                collected_msg += "not collected - " + type + "\n";
+                collected_msg += "not collected " + type + "\n";
             }
         }
         Debug.Log(collected_msg);
         //---
+
+        if (cinemachineCamera != null)
+        {
+            cinemachineCamera.Follow = null;
+        }
 
 
         if (Player != null)
