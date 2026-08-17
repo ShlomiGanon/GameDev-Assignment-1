@@ -1,53 +1,54 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-    [SerializeField] PlayerMovement pm;
-    bool IsEngage = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private GameObject player;
+    [SerializeField] private CharacterMovement characterMovement;
+    private bool isEngaged;
+
     public void StartEngage()
     {
-        IsEngage = true;
+        isEngaged = true;
     }
 
     public void StopEngage()
     {
-        IsEngage = false;
+        isEngaged = false;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (!player.GetComponent<PlayerController>().IsAlive())
         {
-            pm.HandleHorizontalMove(0f);
+            characterMovement.HandleHorizontalMove(0f);
             return;
         }
-        Vector2 MoveDerictions = new Vector2(0f, 0f);
-        if(IsEngage)
+
+        Vector2 moveDirection = new Vector2(0f, 0f);
+
+        if (isEngaged)
         {
-            float PlayerX = player.transform.position.x;
-            float CurrentEnemyX = this.transform.position.x;
-            if(PlayerX > CurrentEnemyX)//the player is right to the enemy
+            float playerX = player.transform.position.x;
+            float currentEnemyX = transform.position.x;
+
+            if (playerX > currentEnemyX) // The player is to the right of the enemy.
             {
-                MoveDerictions.x = 1;
+                moveDirection.x = 1;
             }
-            else if (PlayerX < CurrentEnemyX)//the player is left to the enemy
+            else if (playerX < currentEnemyX) // The player is to the left of the enemy.
             {
-                MoveDerictions.x = -1;
+                moveDirection.x = -1;
             }
-            else//the player and the enemy is in the same position
+            else // The player and the enemy are at the same position.
             {
-                MoveDerictions.x = 0;
+                moveDirection.x = 0;
             }
         }
         else
         {
-            MoveDerictions.x = 0;
+            moveDirection.x = 0;
         }
-        pm.HandleHorizontalMove(MoveDerictions.x);
+
+        characterMovement.HandleHorizontalMove(moveDirection.x);
     }
 }

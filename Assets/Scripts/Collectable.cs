@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public enum CollectableType
 {
     Coin,
@@ -15,7 +14,7 @@ public class Collectable : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 currentRotation = transform.eulerAngles;
-        currentRotation.y += 1;
+        currentRotation.y += 1f;
         transform.eulerAngles = currentRotation;
     }
 

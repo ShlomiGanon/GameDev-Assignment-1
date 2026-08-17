@@ -1,54 +1,68 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 
 public class PlayerController : MonoBehaviour
 {
-    private PlayerMovement pm;
+    private CharacterMovement characterMovement;
     private GameManager gameManager;
     private bool isAlive = true;
-    void Start()
+
+    private void Start()
     {
-        pm = GetComponent<PlayerMovement>();
-        if (!pm) Debug.LogError("can't find PlayerMovement script!");
+        characterMovement = GetComponent<CharacterMovement>();
+
+        if (!characterMovement)
+        {
+            Debug.LogError("can't find CharacterMovement script!");
+        }
+
         gameManager = FindFirstObjectByType<GameManager>();
-        if (!gameManager) Debug.LogError("can't find GameManager script!");
+
+        if (!gameManager)
+        {
+            Debug.LogError("can't find GameManager script!");
+        }
     }
+
     public bool IsAlive()
     {
         return isAlive;
     }
 
-    void OnMove(InputValue value)
+    private void OnMove(InputValue value)
     {
-        float XValue = value.Get<Vector2>().x;
-        pm.HandleHorizontalMove(XValue);
+        float horizontalDirection = value.Get<Vector2>().x;
+        characterMovement.HandleHorizontalMove(horizontalDirection);
     }
 
-    void OnJump(InputValue value)
+    private void OnJump(InputValue value)
     {
         if (value.isPressed)
         {
-            pm.HandleJump();
+            characterMovement.HandleJump();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isAlive) return;
+        if (!isAlive)
+        {
+            return;
+        }
 
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Trap"))
         {
             isAlive = false;
             TriggerGameOver();
         }
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isAlive) return;
+        if (!isAlive)
+        {
+            return;
+        }
 
         if (collision.gameObject.CompareTag("Collectable"))
         {
@@ -68,7 +82,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void TriggerGameOver(bool finishedSuccessfully = false)
+    private void TriggerGameOver(bool finishedSuccessfully = false)
     {
         if (gameManager != null)
         {
@@ -79,5 +93,4 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("cant end the game , can't find GameManager script");
         }
     }
-
 }

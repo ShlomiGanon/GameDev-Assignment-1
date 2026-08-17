@@ -1,20 +1,19 @@
 using UnityEngine;
 
-public class EnemyTriger : MonoBehaviour
+public class EnemyTrigger : MonoBehaviour
 {
-    [SerializeField] private EnemyController enemy_to_trig;
+    [SerializeField] private EnemyController enemyToTrigger;
 
     private void Start()
     {
-        enemy_to_trig.StopEngage();
+        enemyToTrigger.StopEngage();
     }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            enemy_to_trig.StartEngage();
+            enemyToTrigger.StartEngage();
         }
     }
 
@@ -22,7 +21,7 @@ public class EnemyTriger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            enemy_to_trig.StopEngage();
+            enemyToTrigger.StopEngage();
         }
     }
 }

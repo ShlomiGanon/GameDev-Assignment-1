@@ -1,22 +1,27 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour
 {
-    Rigidbody2D rb;
-    Vector2 moveDirections;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 7f;
-    bool isGrounded = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private Rigidbody2D rb;
+    private Vector2 moveDirection;
+    private bool isGrounded;
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        if (!rb) Debug.LogError("the script can't find any Rigidbody2D!");
+
+        if (!rb)
+        {
+            Debug.LogError("the script can't find any Rigidbody2D!");
+        }
     }
 
-    public void HandleHorizontalMove(float HorizontalDirection)
+    private void FixedUpdate()
     {
-        this.moveDirections = new Vector2(HorizontalDirection, 0f);
+        rb.linearVelocity = new Vector2(moveDirection.x * moveSpeed, rb.linearVelocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -35,16 +40,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void HandleJump()
+    public void HandleHorizontalMove(float horizontalDirection)
     {
-        if (this.isGrounded)
-        {
-            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-        }
+        moveDirection = new Vector2(horizontalDirection, 0f);
     }
 
-    private void FixedUpdate()
+    public void HandleJump()
     {
-        rb.linearVelocity = new Vector2(moveDirections.x * moveSpeed, rb.linearVelocity.y);
+        if (!isGrounded)
+        {
+            return;
+        }
+
+        rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
     }
 }

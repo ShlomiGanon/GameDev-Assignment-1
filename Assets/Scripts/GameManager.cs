@@ -1,50 +1,52 @@
+using System;
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using Unity.Cinemachine;
-
 
 public class GameManager : MonoBehaviour
 {
-    private Hashtable Collected = new Hashtable();
     [SerializeField] private CinemachineCamera cinemachineCamera;
-    [SerializeField] private GameObject Player;
-    [SerializeField] private Vector2 Death_Force = new(0f, 5f);
-    [SerializeField] private float Death_Torque = 20f;
-    [SerializeField] private float AfterDeathForceSeconds = 4f;
-    [SerializeField] private Color PlayerFinishedSuccessfullyColor;
+    [SerializeField] private GameObject player;
+    [SerializeField] private Vector2 deathForce = new(0f, 5f);
+    [SerializeField] private float deathTorque = 20f;
+    [SerializeField] private float sceneReloadDelay = 4f;
+    [SerializeField] private Color winPlayerColor;
+
+    private readonly Hashtable collected = new();
+
     public void CountCollectables(CollectableType type)
     {
         int lastValue = 0;
-        
-        if (Collected.Contains(type))
-        {
-            lastValue = (int)Collected[type];
-        }
-        Collected[type] = lastValue + 1;
-    }
 
+        if (collected.Contains(type))
+        {
+            lastValue = (int)collected[type];
+        }
+
+        collected[type] = lastValue + 1;
+    }
 
     public IEnumerator GameEnd(bool finishedSuccessfully = false)
     {
+        //--- summary print
+        string summaryLog = $"End Game Status: {(finishedSuccessfully ? "Success" : "Failed")}\n";
 
-        //--- game over prints
-        string collected_msg = "End Game Status: " + ((finishedSuccessfully) ? "Success" : "Failed") + "\n";
-
-        foreach (CollectableType type in System.Enum.GetValues(typeof(CollectableType)))
+        foreach (CollectableType type in Enum.GetValues(typeof(CollectableType)))
         {
-            if (Collected.ContainsKey(type)) 
+            if (collected.ContainsKey(type))
             {
-                int count = (int)Collected[type];
-                collected_msg += "collected " + count + " of " + type + "\n";
+                int count = (int)collected[type];
+                summaryLog += $"collected {count} of {type}\n";
             }
             else
             {
-                collected_msg += "not collected " + type + "\n";
+                summaryLog += $"not collected {type}\n";
             }
         }
-        Debug.Log(collected_msg);
+
+        Debug.Log(summaryLog);
         //---
 
         if (cinemachineCamera != null)
@@ -52,40 +54,42 @@ public class GameManager : MonoBehaviour
             cinemachineCamera.Follow = null;
         }
 
-
-        if (Player != null)
+        if (player != null)
         {
-            PlayerInput playerInput = Player.GetComponent<PlayerInput>();
+            PlayerInput playerInput = player.GetComponent<PlayerInput>();
+
             if (playerInput != null)
             {
                 playerInput.enabled = false;
             }
 
-            SpriteRenderer PlayerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
-            if (PlayerSpriteRenderer != null)
+            SpriteRenderer playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
+
+            if (playerSpriteRenderer != null)
             {
-                Color currentColor = PlayerSpriteRenderer.color;
+                Color currentColor = playerSpriteRenderer.color;
+
                 if (!finishedSuccessfully)
                 {
-
                     currentColor.a = 0.5f;
-                    PlayerSpriteRenderer.color = currentColor;
+                    playerSpriteRenderer.color = currentColor;
 
-                    Rigidbody2D PlayerRb = Player.GetComponent<Rigidbody2D>();
-                    if (PlayerRb != null)
+                    Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+
+                    if (playerRb != null)
                     {
-                        PlayerRb.AddForce(Death_Force);
-                        PlayerRb.freezeRotation = false;
-                        PlayerRb.AddTorque(Death_Torque, ForceMode2D.Impulse);
+                        playerRb.AddForce(deathForce);
+                        playerRb.freezeRotation = false;
+                        playerRb.AddTorque(deathTorque, ForceMode2D.Impulse);
                     }
                 }
                 else
                 {
-                    PlayerSpriteRenderer.color = PlayerFinishedSuccessfullyColor;
+                    playerSpriteRenderer.color = winPlayerColor;
                 }
             }
         }
-        yield return new WaitForSeconds(AfterDeathForceSeconds);
+        yield return new WaitForSeconds(sceneReloadDelay);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

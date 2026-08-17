@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
+    private const float SwitchTargetThreshold = 0.01f;
+
     [SerializeField] private Transform topPoint;
     [SerializeField] private Transform bottomPoint;
     [SerializeField] private float speed = 2f;
@@ -9,13 +11,9 @@ public class MovingPlatform : MonoBehaviour
     private Rigidbody2D rb;
     private Transform target;
 
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         target = topPoint;
     }
 
@@ -29,10 +27,9 @@ public class MovingPlatform : MonoBehaviour
 
         rb.MovePosition(newPosition);
 
-        if (Vector2.Distance(rb.position, target.position) < 0.01f)
+        if (Vector2.Distance(rb.position, target.position) < SwitchTargetThreshold)
         {
             target = target == topPoint ? bottomPoint : topPoint;
         }
     }
-
 }
