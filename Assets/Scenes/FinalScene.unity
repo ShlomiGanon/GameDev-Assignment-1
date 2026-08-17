@@ -6612,7 +6612,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.23}
+  m_Offset: {x: 0, y: -0.32}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6622,7 +6622,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.38, y: 0.22}
+  m_Size: {x: 0.38, y: 0.05}
   m_EdgeRadius: 0
 --- !u!212 &533330469
 SpriteRenderer:
@@ -6728,11 +6728,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   cinemachineCamera: {fileID: 83219647}
-  Player: {fileID: 786114080}
-  Death_Force: {x: 0, y: 5}
-  Death_Torque: 20
-  AfterDeathForceSeconds: 4
-  PlayerFinishedSuccessfullyColor: {r: 0.022890752, g: 0.690566, b: 0, a: 1}
+  player: {fileID: 786114080}
+  deathForce: {x: 0, y: 5}
+  deathTorque: 20
+  sceneReloadDelay: 4
+  winPlayerColor: {r: 0.1192226, g: 0.93962264, b: 0.06205042, a: 1}
 --- !u!4 &607970472
 Transform:
   m_ObjectHideFlags: 0
@@ -8748,6 +8748,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3377731014350795948, guid: 44233cd1bedeb854da651d882e76917a, type: 3}
+      propertyPath: jumpForce
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -3377731014350795948, guid: 44233cd1bedeb854da651d882e76917a, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1928088039203583871, guid: 44233cd1bedeb854da651d882e76917a, type: 3}
       propertyPath: m_Name
       value: Player

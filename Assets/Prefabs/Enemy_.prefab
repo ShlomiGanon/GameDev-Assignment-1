@@ -107,8 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5e6084017fd3643926d68833540a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  player: {fileID: 0}
-  pm: {fileID: 8814829942886145925}
+  player: {fileID: 1928088039203583871, guid: 44233cd1bedeb854da651d882e76917a, type: 3}
+  characterMovement: {fileID: 8814829942886145925}
 --- !u!114 &8814829942886145925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788405458571bf44285869a6fe87de23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTriger
-  enemy_to_trig: {fileID: 3515723559063245284}
+  enemyToTrigger: {fileID: 3515723559063245284}
 --- !u!1 &9131673233431217567
 GameObject:
   m_ObjectHideFlags: 0
