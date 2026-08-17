@@ -2,14 +2,18 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Unity.Cinemachine;
+
 
 public class GameManager : MonoBehaviour
 {
     private Hashtable Collected = new Hashtable();
+    [SerializeField] private CinemachineCamera cinemachineCamera;
     [SerializeField] private GameObject Player;
     [SerializeField] private Vector2 Death_Force = new(0f, 5f);
     [SerializeField] private float Death_Torque = 20f;
     [SerializeField] private float AfterDeathForceSeconds = 4f;
+    [SerializeField] private Color PlayerFinishedSuccessfullyColor;
     public void CountCollectables(CollectableType type)
     {
         int lastValue = 0;
@@ -22,8 +26,13 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public IEnumerator GameEnd()
+    public IEnumerator GameEnd(bool finishedSuccessfully = false)
     {
+        if (cinemachineCamera != null)
+        {
+            cinemachineCamera.Follow = null;
+        }
+
 
         if (Player != null)
         {
@@ -33,19 +42,28 @@ public class GameManager : MonoBehaviour
                 playerInput.enabled = false;
             }
 
-            SpriteRenderer spriteRenderer = Player.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
+            SpriteRenderer PlayerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
+            if (PlayerSpriteRenderer != null)
             {
-                Color newColor = spriteRenderer.color;
-                newColor.a = 0.5f;
-                spriteRenderer.color = newColor;
-            }
-            Rigidbody2D PlayerRb = Player.GetComponent<Rigidbody2D>();
-            if(PlayerRb != null)
-            {
-                PlayerRb.AddForce(Death_Force);
-                PlayerRb.freezeRotation = false;
-                PlayerRb.AddTorque(Death_Torque, ForceMode2D.Impulse);
+                Color currentColor = PlayerSpriteRenderer.color;
+                if (!finishedSuccessfully)
+                {
+
+                    currentColor.a = 0.5f;
+                    PlayerSpriteRenderer.color = currentColor;
+
+                    Rigidbody2D PlayerRb = Player.GetComponent<Rigidbody2D>();
+                    if (PlayerRb != null)
+                    {
+                        PlayerRb.AddForce(Death_Force);
+                        PlayerRb.freezeRotation = false;
+                        PlayerRb.AddTorque(Death_Torque, ForceMode2D.Impulse);
+                    }
+                }
+                else
+                {
+                    PlayerSpriteRenderer.color = PlayerFinishedSuccessfullyColor;
+                }
             }
         }
         yield return new WaitForSeconds(AfterDeathForceSeconds);

@@ -43,11 +43,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void TriggerGameOver()
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("FinishLine"))
+        {
+            TriggerGameOver(true);
+        }
+    }
+
+    void TriggerGameOver(bool finishedSuccessfully = false)
     {
         if (gameManager != null)
         {
-            gameManager.StartCoroutine(gameManager.GameEnd());
+            gameManager.StartCoroutine(gameManager.GameEnd(finishedSuccessfully));
         }
         else
         {
